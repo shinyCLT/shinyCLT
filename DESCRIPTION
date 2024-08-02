@@ -15,8 +15,9 @@ Imports:
     future,
     shinycssloaders,
     waiter,
-    shinythemes
-Depends: R (>= 3.5.0)
+    shinythemes,
+    shinyWidgets
+Depends: R (>= 3.5.0), shiny
 License: GPL-2
 Encoding: UTF-8
 RoxygenNote: 7.3.2.9000
