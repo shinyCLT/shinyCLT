@@ -8,9 +8,14 @@ Authors@R: c(
             )
 Description: ShinyApp with Central Limit Theorem examples.
 Imports: 
+    shiny,
     gamlss,
     dplyr, 
-    shiny
+    plotly,
+    future,
+    shinycssloaders,
+    waiter,
+    shinythemes
 Depends: R (>= 3.5.0)
 License: GPL-2
 Encoding: UTF-8
