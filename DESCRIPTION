@@ -1,0 +1,17 @@
+Package: shinyCLT
+Title: CLT
+Version: 0.0.9
+Authors@R: c(
+              person("Dominique-Laurent", "Couturier", role = c("aut", "cre"), email = "dlc45@cam.ac.uk", 
+              comment = c(ORCID = "0000-0001-5774-5036")), 
+              person("Nikita", "Mozgunov", role =  c("aut"))
+              )
+Description: ShinyApp with Central Limit Theorem examples.
+Imports: 
+    gamlss,
+    dplyr, 
+    shiny
+Depends: R (>= 3.5.0)
+License: GPL-2
+Encoding: UTF-8
+RoxygenNote: 7.3.2.9000
