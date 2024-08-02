@@ -2,7 +2,8 @@ Package: shinyCLT
 Title: CLT
 Version: 0.0.9
 Authors@R: c(
-            person("Dominique-Laurent", "Couturier", role = c("aut", "cre"), email = "dlc45@cam.ac.uk", 
+            person("Dominique-Laurent", "Couturier", role = c("aut", "cre"),
+            email = "dlc45@cam.ac.uk", 
             comment = c(ORCID = "0000-0001-5774-5036")), 
             person("Nikita", "Mozgunov", role =  c("aut"))
             )
