@@ -1,6 +1,6 @@
 Package: shinyCLT
 Title: CLT
-Version: 0.0.9
+Version: 0.9.1
 Authors@R: c(
             person("Dominique-Laurent", "Couturier", role = c("aut", "cre"),
             email = "dlc45@cam.ac.uk", 
