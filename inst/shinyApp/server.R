@@ -1,7 +1,9 @@
 server = 
   function(input, output, session) {
     
-    
+    session$onSessionEnded(function() {
+    stopApp()
+  })
     v <- reactiveValues(simul = FALSE)
     
     output$choose_distr <- renderUI({
