@@ -13,7 +13,7 @@ Then proceed to installation of shinyCLT package from CRAN:
 install.packages("shinyCLT")
 ```
 
-OR GitHub
+or GitHub
 
 ```r
 devtools::install_github("shinyCLT/shinyCLT")
