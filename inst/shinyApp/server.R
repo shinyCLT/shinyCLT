@@ -365,9 +365,9 @@ output$tab4_legend_group <- renderText({
                               "sigma.value"])))])
 
       df.table <- data.frame(c("Mean", "Median"),
-                             c(input$mu, median.group1),
-                             c(input$group2.mu, median.group2),
-                             c(input$mu - input$group2.mu,
+                              c(input$mu, median.group1),
+                              c(input$group2.mu, median.group2),
+                              c(input$mu - input$group2.mu,
                               median.group1 - median.group2))
       names(df.table) <- c("Statistic","Group 1", "Group 2", "Difference")
       df.table

@@ -286,17 +286,17 @@ generate_compare_uniform_plot <- function(
               y = ylim0[2] * 1.1, text = "&mu;<sub>2</sub>",
               color = I("red"), hoverinfo = "none") %>%
     layout(title = "",
-           xaxis = list(title = "",
+            xaxis = list(title = "",
                         range = list(xlim0[1] - diff, xlim0[2] + diff),
                         fixedrange = TRUE,
                         showline = FALSE,
                         showgrid = FALSE,
                         zeroline = FALSE),
-           yaxis = list(title = "Density",
+            yaxis = list(title = "Density",
                         fixedrange = TRUE,
                         showline = FALSE,
                         showgrid = FALSE),
-           showlegend = FALSE)
+            showlegend = FALSE)
   # Display the plot
   p
 }
