@@ -18,3 +18,10 @@ or GitHub
 ```r
 devtools::install_github("shinyCLT/shinyCLT")
 ```
+
+Then you could load the library and run the application.
+
+```r
+library(shinyCLT)
+CLT()
+```
