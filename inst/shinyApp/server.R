@@ -1,10 +1,26 @@
 server =
   function(input, output, session) {
 
+# Check input options #########################################################
+    mode <- getShinyOption("mode")
+    if (mode != "app" && mode != "server") {
+      stop("Invalid mode. Mode must be either 'app' or 'server'.")
+    }
+    if (mode == "app") {
     session$onSessionEnded(function() {
     stopApp()
   })
+  }
 
+    n.cores <- getShinyOption("n.cores")
+
+      if (!is.null(n.cores) && (n.cores <= 0 || is.na(n.cores) ||
+      n.cores %% 1 != 0 || n.cores > detectCores())) {
+        warning(paste("n.cores must be a positive integer less thn or equal",
+          "to the number of available cores"))
+          stopApp()
+      }
+# Creating input values #######################################################
     v <- reactiveValues(simul = FALSE)
 
     output$choose_distr <- renderUI({
@@ -66,7 +82,7 @@ server =
                   value = 1000)
     })
 
-    # group 2 UI --------------------------------------------------------
+    # group 2 UI ##############################################################
     output$group2_ui <- renderUI({
       checkboxInput("group2_ui",
                     "Add group 2",
@@ -109,7 +125,7 @@ server =
       )
     })
 
-# Generate UI -------------------------------------------------------------
+# Define tabs for two groups ###################################################
     output$density_tab_title <- renderUI({
       if (input$group2_ui == FALSE) {
         return("Theoretical density")
@@ -126,7 +142,7 @@ server =
       }
     })
 
-# Text output -------------------------------------------------------------
+# Text output #################################################################
 output$tab1_legend <- renderText({
   if (v$simul == FALSE) return()
   if (check_input_gr1(input)) return()
@@ -203,7 +219,7 @@ output$tab2_legend <- renderText({
     The normal approximation is suitable if all points of a (coloured) group
     are close to it the corresponding coloured dashed line."))
   }
- })
+  })
 
 
 output$tab3_legend <- renderText({
@@ -235,7 +251,6 @@ output$tab3_legend <- renderText({
               the true mean is indicated. This percentage is close to 95% when
               the normal approximation is suitable."))
 })
-
 
 output$tab3_legend_group <- renderText({
   if (v$simul == FALSE) return()
@@ -309,7 +324,7 @@ output$tab4_legend_group <- renderText({
             smaller than 0.05, the assumed **type I error**."))
 })
 
-# Calculations ------------------------------------------------------------
+# Calculations #################################################################
     observeEvent(input$sidebar, {
       v$simul <- FALSE
     })
@@ -329,7 +344,7 @@ output$tab4_legend_group <- renderText({
       }
     })
 
-    # Density plot ------------------------------------------------------------
+    # Density plot #############################################################
     output$mean_table <- renderTable({
       if (v$simul == FALSE) return()
       if (check_input_gr1(input)) return()
@@ -433,7 +448,7 @@ output$tab4_legend_group <- renderText({
       group2_5samples_plot(input, distribution, group1, group2)
     })
 
-    # Est mean density tab -----------------------------------------------------
+    # Estimated mean density tab ###############################################
 
     output$mean <- renderPlot({
       if (v$simul == FALSE) return()
@@ -465,7 +480,7 @@ output$tab4_legend_group <- renderText({
       }
     })
 
-# Coverage tab ----------------------------------------------------------------
+# Coverage tab #################################################################
     output$ci_summary <- renderTable({
       if (v$simul == FALSE) return()
       if (check_input_gr1(input)) return()
@@ -517,7 +532,7 @@ output$tab4_legend_group <- renderText({
                   selected = "Student's")
     })
 
-  # P-value tab-----------------------------------------------------------------
+  # P-value tab ################################################################
     output$pvalue <- renderPlot({
       if (v$simul == FALSE) return()
       if (check_input_gr1(input)) return()

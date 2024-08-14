@@ -7,8 +7,6 @@ require("waiter")
 require("shinythemes")
 require("shinyWidgets")
 
-plan(multisession)
-
 distribution = data.frame(pos = 1:9,
     id          = c("NO","GA","BE","BI","WEI3","ZIP2","PO","EXP", "UNIF"),
     fullname    = c("Gaussian","Gamma","Beta","Bernoulli","Weibull",

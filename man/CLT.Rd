@@ -4,7 +4,18 @@
 \alias{CLT}
 \title{Launch the Central Limit Theorem Shiny application}
 \usage{
-CLT()
+CLT(n.cores = NULL, mode = "app")
+}
+\arguments{
+\item{n.cores}{Number of cores to use for calculations. Default value
+is NULL, which means that half of the cores will be used with the ceiling
+ rounding rule.}
+
+\item{mode}{Change application behaviour when web browser tab or IDE preview
+ is closed.
+By default this will end the running function and stop the local shinyApp.
+Switching to "server" mode will keep the shiny application running in a
+background even if all with application is closed.}
 }
 \value{
 Runs shinyApp
@@ -14,11 +25,10 @@ This function starts a Shiny application that demonstrates examples of
  the Central Limit Theorem.
 The app is stored internally within the package and showcases various
  statistical principles through interactive visualizations.
-It automatically checks for, installs (if missing), and loads necessary
- packages.
+Check more details at vignette("shinyCLT")
 }
 \examples{
 \dontrun{
-  CLT()
+CLT()
 }
 }

@@ -3,3 +3,6 @@
 .github
 ^cran-comments\.md$
 .vscode
+^doc$
+^Meta$
+^tests$

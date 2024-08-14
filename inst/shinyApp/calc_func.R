@@ -147,10 +147,15 @@ calculate_wilcoxon <- function(.group1, .group2, input, distribution) {
       } else {
 
       R <- input$R
-
+      n.cores <- getShinyOption("n.cores")
+      
       result <-  future({
-
-        no_cores <- ifelse(detectCores() > 1, detectCores() - 1, detectCores())
+        if (is.null(n.cores)) {
+        no_cores <- ifelse(detectCores() > 1, ceiling(detectCores() / 2),
+                                              detectCores())
+        } else {
+        no_cores  <- n.cores
+        }
         cl <- makeCluster(no_cores)
 
         clusterExport(cl, c("sample1", "sample2", "wilcox.test", "R"),
@@ -162,7 +167,6 @@ calculate_wilcoxon <- function(.group1, .group2, input, distribution) {
         })
 
         stopCluster(cl)
-
         wilcox_results
       })
 

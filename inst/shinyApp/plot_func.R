@@ -1104,10 +1104,16 @@ build_table <- function(input, .group1) {
     sample1 <- .group1$all_y_r
 
       R <- input$R
+      n.cores <- getShinyOption("n.cores")
 
       result <- future({
 
-        no_cores <- ifelse(detectCores() > 1, detectCores() - 1, detectCores())
+        if (is.null(n.cores)) {
+        no_cores <- ifelse(detectCores() > 1, ceiling(detectCores() / 2),
+                                              detectCores())
+        } else {
+        no_cores  <- n.cores
+        }
         cl <- makeCluster(no_cores)
 
         clusterExport(cl, c("sample1", "wilcox.test", "R"),
@@ -1202,10 +1208,12 @@ plot_pvalue <- function(.group1, .group2, input) {
                           "sigma.value"])))])
 
   true.median <- median.group1 - median.group2
+  n.cores <- getShinyOption("n.cores")
 
   result <-  future({
 
-    no_cores <- ifelse(detectCores() > 1, detectCores() - 1, detectCores())
+    no_cores <- ifelse(detectCores() > 1, ceiling(detectCores() / 2),
+                                              detectCores())
     cl <- makeCluster(no_cores)
 
     clusterExport(cl, c("sample1", "sample2", "wilcox.test", "R"),
