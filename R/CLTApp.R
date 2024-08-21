@@ -37,15 +37,15 @@ CLT <- function(n.cores = NULL, mode = "app") {
 
   shiny::shinyOptions(n.cores = n.cores, mode = mode)
 
-  source(system.file("app", "ui.R", package = "shinyCLTdev"),
+  source(system.file("app", "ui.R", package = "shinyCLT"),
                                         local = TRUE)
-  source(system.file("app", "server.R", package = "shinyCLTdev"),
+  source(system.file("app", "server.R", package = "shinyCLT"),
                                         local = TRUE)
-  source(system.file("app", "global.R", package = "shinyCLTdev"),
+  source(system.file("app", "global.R", package = "shinyCLT"),
                                         local = TRUE)
-  source(system.file("app", "calc_func.R", package = "shinyCLTdev"),
+  source(system.file("app", "calc_func.R", package = "shinyCLT"),
                                         local = TRUE)
-  source(system.file("app", "plot_func.R", package = "shinyCLTdev"),
+  source(system.file("app", "plot_func.R", package = "shinyCLT"),
                                         local = TRUE)
 
   shiny::shinyApp(ui = ui, server = server)

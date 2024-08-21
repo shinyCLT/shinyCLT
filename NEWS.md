@@ -1,3 +1,3 @@
-# shinyCLT-dev 0.9.1
+# shinyCLT 0.9.1
 
 * Initial CRAN submission.

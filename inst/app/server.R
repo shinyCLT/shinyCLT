@@ -1,9 +1,9 @@
 server =
   function(input, output, session) {
 
-addResourcePath("www", system.file("app/www", package = "shinyCLTdev"))
+addResourcePath("www", system.file("app/www", package = "shinyCLT"))
 # Check input options #########################################################
-    mode <- getShinyOption("mode")
+
     if (mode != "app" && mode != "server") {
       stop("Invalid mode. Mode must be either 'app' or 'server'.")
     }
@@ -12,8 +12,6 @@ addResourcePath("www", system.file("app/www", package = "shinyCLTdev"))
     stopApp()
   })
   }
-
-    n.cores <- getShinyOption("n.cores")
 
       if (!is.null(n.cores) && (n.cores <= 0 || is.na(n.cores) ||
       n.cores %% 1 != 0 || n.cores > detectCores())) {

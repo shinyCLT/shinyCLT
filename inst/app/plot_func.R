@@ -1212,13 +1212,14 @@ plot_pvalue <- function(.group1, .group2, input) {
       plan(cluster)
 
   result <-  future({
-
     if (is.null(n.cores)) {
         no_cores <- ifelse(detectCores() > 1, ceiling(detectCores() / 2),
                                               detectCores())
         } else {
         no_cores  <- n.cores
         }
+    
+    cl <- makeCluster(no_cores)
 
     clusterExport(cl, c("sample1", "sample2", "wilcox.test", "R"),
                   envir = environment())
@@ -1267,7 +1268,7 @@ plot_pvalue <- function(.group1, .group2, input) {
   hist(wilcox.pvalue, prob = TRUE, breaks = c(0, .05, seq(.1, 1, .05)),
         main = "Wilcoxon test", xlab = "",
         col = ifelse(maxfrq.pvalue$breaks < .05, "#F6695D", "grey90"),
-        border = "grey50", xaxt = "n", cex.main = 1.3,
+        border = "grey50", xaxt = "n", cex.main = 1.5,
         cex.axis = 1.3, las = 1)
   axis(1, at = c(0, seq(.2, 1, .2), 1),
         labels = c(0, seq(.2, 1, .2), 1), cex.axis = 1.3)

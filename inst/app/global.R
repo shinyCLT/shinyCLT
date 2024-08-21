@@ -11,6 +11,9 @@ require("cachem")
 
 m <- cache_mem()
 
+n.cores <- getShinyOption("n.cores")
+mode <- getShinyOption("mode")
+
 distribution = data.frame(pos = 1:9,
     id          = c("NO","GA","BE","BI","WEI3","ZIP2","PO","EXP", "UNIF"),
     fullname    = c("Gaussian","Gamma","Beta","Bernoulli","Weibull",

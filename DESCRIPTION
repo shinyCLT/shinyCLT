@@ -1,4 +1,4 @@
-Package: shinyCLTdev
+Package: shinyCLT
 Title: Central Limit Theorem Shiny Application
 Version: 0.9.1
 Authors@R: c(
