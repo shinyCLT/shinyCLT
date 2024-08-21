@@ -6,6 +6,10 @@ require("shinycssloaders")
 require("waiter")
 require("shinythemes")
 require("shinyWidgets")
+require("cachem")
+
+
+m <- cache_mem()
 
 distribution = data.frame(pos = 1:9,
     id          = c("NO","GA","BE","BI","WEI3","ZIP2","PO","EXP", "UNIF"),
@@ -31,8 +35,6 @@ distribution = data.frame(pos = 1:9,
     stringsAsFactors = FALSE
     )[c(1,2,3,4,5,6,7,8,9),]
 
-source("calc_func.R")
-source("plot_func.R")
 
 check_input_gr1 <- function(input) {
     invalid_input <- switch(distribution[input$distr, "id"],

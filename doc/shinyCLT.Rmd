@@ -1,0 +1,47 @@
+---
+title: "Using the Central Limit Theorem Shiny Application"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the Central Limit Theorem Shiny Application}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# Introduction
+The CLT function in the shinyCLT package launches an interactive Shiny application that demonstrates the Central Limit Theorem (CLT). This application provides an educational tool through interactive visualizations of statistical principles.
+
+## Function Parameters
+The CLT function comes with the following parameters:
+
+**n.cores**: Specifies the number of CPU cores to be used for calculations. By default (n.cores = NULL), the function uses half of the available cores on your machine, rounded up to the nearest whole number.
+
+**mode**: Controls the behavior of the application when the web browser tab or IDE preview is closed:
+
+"app" (default): The Shiny application stops running when the browser tab is closed.
+"server": The Shiny application continues running in the background, even after the browser tab is closed.
+Usage
+Example 1: Default Settings
+In the default mode, the application uses half of the available cores and stops running when the browser tab is closed:
+```
+# Launch the Central Limit Theorem Shiny application
+CLT()
+```
+
+# Considerations
+## Long Computations
+The application may involve long-running computations, particularly with large datasets or complex simulations. Utilizing multiple cores can expedite these operations, but it may also lead to high CPU usage, potentially affecting the performance of other applications.
+
+## Resource Management
+When specifying n.cores, be cautious of system resource usage. Allocating too many cores to the Shiny application could slow down other processes on your machine.
+
+## Persistent Sessions
+In "server" mode, the Shiny application will continue to run even after closing the browser. While this can be advantageous for long-running sessions, it requires manual intervention to stop the application, which could lead to unintended resource consumption if forgotten.
+
+Conclusion
+By understanding and using the parameters effectively, you can optimize the performance and behavior of the Central Limit Theorem Shiny application according to your needs.

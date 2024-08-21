@@ -1,6 +1,7 @@
 server =
   function(input, output, session) {
 
+addResourcePath("www", system.file("app/www", package = "shinyCLTdev"))
 # Check input options #########################################################
     mode <- getShinyOption("mode")
     if (mode != "app" && mode != "server") {
@@ -489,9 +490,9 @@ output$tab4_legend_group <- renderText({
       group1 <- simulationResults()
       group2 <- controlSimulationResults()
 
-      ttests_list <<- calculate_wilcoxon(group1, group2, input, distribution)
-
-      build_table_compare(input, ttests_list)
+      ttests_temp <- calculate_wilcoxon(group1, group2, input, distribution)
+      m$set("ttests_list", ttests_temp)
+      build_table_compare(input, m$get("ttests_list"))
 
     }, sanitize.text.function = identity, align = "lccc")
 
@@ -521,7 +522,7 @@ output$tab4_legend_group <- renderText({
       group1 <- simulationResults()
       group2 <- controlSimulationResults()
 
-  plot_CI_control(group1, group2, input, get("ttests_list", envir = .GlobalEnv))
+  plot_CI_control(group1, group2, input, m$get("ttests_list"))
     })
 
     output$choose_ttest <- renderUI({

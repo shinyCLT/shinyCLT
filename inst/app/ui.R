@@ -3,7 +3,7 @@ ui <- fluidPage(
   useWaiter(),
   titlePanel("Central limit theorem"),
   tags$head(
-    tags$link(rel = "stylesheet", type = "text/css", href = "style.css")
+    tags$link(rel = "stylesheet", type = "text/css", href = "www/style.css")
   ),
   sidebarLayout(
 
@@ -14,7 +14,7 @@ ui <- fluidPage(
       uiOutput("choose_sigma"),
       uiOutput("choose_nu"),
       uiOutput("choose_n"),
-      uiOutput("choose_R", style="margin-bottom:10px;"),
+      uiOutput("choose_R", style = "margin-bottom:10px;"),
       materialSwitch(inputId = "group2_ui", label = "Add group 2",
                       value = FALSE, status = "primary"),
       conditionalPanel(
@@ -43,7 +43,7 @@ ui <- fluidPage(
                       column(6, h6(""), tableOutput("mean_table")),
                       column(2)
                     ),
-                    plotlyOutput(outputId = "density") %>% 
+                    plotlyOutput(outputId = "density") %>%
                     shinycssloaders::withSpinner(type = 1, color = "#1e81b0",
                                                     size = .7, hide.ui = TRUE),
                     plotlyOutput(outputId = "samples_plot", height = "150px"),

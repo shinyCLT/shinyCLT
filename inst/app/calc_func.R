@@ -147,9 +147,9 @@ calculate_wilcoxon <- function(.group1, .group2, input, distribution) {
       } else {
 
       R <- input$R
-      n.cores <- getShinyOption("n.cores")
-      
+      plan(cluster)
       result <-  future({
+
         if (is.null(n.cores)) {
         no_cores <- ifelse(detectCores() > 1, ceiling(detectCores() / 2),
                                               detectCores())
@@ -171,6 +171,7 @@ calculate_wilcoxon <- function(.group1, .group2, input, distribution) {
       })
 
         res <- value(result)
+        plan(sequential)
 
         wilcox_pvalue <- sapply(res, `[[`, "p.value")
         wilcox_ci_both <- t(sapply(res, `[[`, "conf.int"))

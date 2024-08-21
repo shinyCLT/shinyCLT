@@ -1,0 +1,41 @@
+    .form-group { margin-bottom: 0px; }
+	
+    label 		  {margin-bottom: 0px;}
+    body 		  {font-size: 12px;}
+    body 		  {line-height: 15px;}
+    .control-label {margin-top: 5px;}
+    #ttest_text 	  {font-size: 14px; 
+				    line-height: 30px;
+				    font-weight: bold;}
+    #ttest_header  {font-size: 16px; 
+                        line-height: 30px;
+                        font-weight: bold;}
+    .col-sm-6 	  {font-size: 13px;
+                    margin-bottom: -44px;
+                    margin-top: 0px;}
+    div.row 		  {font-size: 11px;}
+    .shiny-output-error { visibility: hidden;}
+    .shiny-output-error:before { visibility: hidden;}
+    .material-switch {padding-right: 12px;
+                    margin-top: 10px;
+                    margin-bottom: 7px;
+                    font-size: 12px;}
+    .action-button {margin-top: 11px;}
+    #tab1_legend, #tab1_legend_group, #tab2_legend, #tab3_legend, #tab3_legend_group, #tab4_legend, #tab4_legend_group {word-break: normal;
+                text-align: left;
+                font-size: 13px;
+                width: auto;
+                height: auto;
+                overflow-x: auto;
+                text-wrap: pretty;
+                margin: 5px;}
+h2{margin-top: 0px;
+                    margin-bottom: 0.0px;
+                }
+p {
+                    margin: 0 0 5px;
+                }
+h6 {font-size: 7px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+                }

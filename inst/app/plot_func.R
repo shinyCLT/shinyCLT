@@ -1104,7 +1104,7 @@ build_table <- function(input, .group1) {
     sample1 <- .group1$all_y_r
 
       R <- input$R
-      n.cores <- getShinyOption("n.cores")
+      plan(cluster)
 
       result <- future({
 
@@ -1129,6 +1129,7 @@ build_table <- function(input, .group1) {
       })
 
       res <- value(result)
+      plan(sequential)
 
       wilcox_pvalue <- sapply(res, `[[`, "p.value")
       wilcox_ci_both <- t(sapply(res, `[[`, "conf.int"))
@@ -1208,13 +1209,16 @@ plot_pvalue <- function(.group1, .group2, input) {
                           "sigma.value"])))])
 
   true.median <- median.group1 - median.group2
-  n.cores <- getShinyOption("n.cores")
+      plan(cluster)
 
   result <-  future({
 
-    no_cores <- ifelse(detectCores() > 1, ceiling(detectCores() / 2),
+    if (is.null(n.cores)) {
+        no_cores <- ifelse(detectCores() > 1, ceiling(detectCores() / 2),
                                               detectCores())
-    cl <- makeCluster(no_cores)
+        } else {
+        no_cores  <- n.cores
+        }
 
     clusterExport(cl, c("sample1", "sample2", "wilcox.test", "R"),
                   envir = environment())
@@ -1229,6 +1233,8 @@ plot_pvalue <- function(.group1, .group2, input) {
   })
 
   res <- value(result)
+  plan(sequential)
+
   wilcox.pvalue <- sapply(res, `[[`, "p.value")
 
   par(mfrow = c(1, 3), mar = c(1, 3, 2, 2))
