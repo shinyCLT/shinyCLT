@@ -15,10 +15,18 @@ addResourcePath("www", system.file("app/www", package = "shinyCLT"))
 
       if (!is.null(n.cores) && (n.cores <= 0 || is.na(n.cores) ||
       n.cores %% 1 != 0 || n.cores > detectCores())) {
-        warning(paste("n.cores must be a positive integer less thn or equal",
+        warning(paste("n.cores must be a positive integer less than or equal",
           "to the number of available cores"))
           stopApp()
       }
+
+
+          if (!user_plan %in% c("cluster", "multicore", "multisession")) {
+          warning(paste("Invalid user_plan: it should be one of 'cluster',",
+          "'multicore', or 'multisession'."))
+          stopApp()
+    }
+
 # Creating input values #######################################################
     v <- reactiveValues(simul = FALSE)
 
@@ -115,8 +123,8 @@ addResourcePath("www", system.file("app/www", package = "shinyCLT"))
                       value = distribution[input$distr,"nu.value"],
                       round = -2)
         },
-        sliderInput("control_n",
-                    "Sample size of control simulated Sample",
+        sliderInput("group2_n",
+                    "Sample size of group2 simulated Sample",
                     min   = 5,
                     max   = 1000,
                     value = 50,
@@ -336,10 +344,10 @@ output$tab4_legend_group <- renderText({
       group1 <- calculate_statistics(input, distribution)
     })
 
-    controlSimulationResults <- reactive({
+    group2_SimulationResults <- reactive({
       if (input$group2_ui) {
         req(input$group2.mu)
-        group2 <- calculate_statistics_control(input, distribution)
+        group2 <- calculate_statistics_group2(input, distribution)
       }
     })
 
@@ -406,7 +414,7 @@ output$tab4_legend_group <- renderText({
       if (check_input_gr2(input)) return()
 
       group1 <- simulationResults()
-      group2 <- controlSimulationResults()
+      group2 <- group2_SimulationResults()
 
       if (input$distr == "Uniform") {
         generate_compare_uniform_plot(input, distribution, group1, group2)
@@ -432,7 +440,7 @@ output$tab4_legend_group <- renderText({
       if (check_input_gr2(input)) return()
 
       group1 <- simulationResults()
-      group2 <- controlSimulationResults()
+      group2 <- group2_SimulationResults()
 
       group1_5samples_plot(input, distribution, group1, group2)
     })
@@ -443,7 +451,7 @@ output$tab4_legend_group <- renderText({
       if (check_input_gr2(input)) return()
 
       group1 <- simulationResults()
-      group2 <- controlSimulationResults()
+      group2 <- group2_SimulationResults()
       group2_5samples_plot(input, distribution, group1, group2)
     })
 
@@ -460,7 +468,7 @@ output$tab4_legend_group <- renderText({
 
         if (check_input_gr2(input)) return()
 
-        group2 <- controlSimulationResults()
+        group2 <- group2_SimulationResults()
 
         plot_compare_density_qq(group1, group2, input)
       }
@@ -473,7 +481,7 @@ output$tab4_legend_group <- renderText({
         if (check_input_gr1(input)) return()
         group1 <- simulationResults()
         if (check_input_gr2(input)) return()
-        group2 <- controlSimulationResults()
+        group2 <- group2_SimulationResults()
 
         plot_compare_means_qq(group1, group2, input)
       }
@@ -486,7 +494,7 @@ output$tab4_legend_group <- renderText({
       if (check_input_gr2(input)) return()
 
       group1 <- simulationResults()
-      group2 <- controlSimulationResults()
+      group2 <- group2_SimulationResults()
 
       ttests_temp <- calculate_wilcoxon(group1, group2, input, distribution)
       m$set("ttests_list", ttests_temp)
@@ -518,9 +526,9 @@ output$tab4_legend_group <- renderText({
       if (check_input_gr1(input)) return()
       if (check_input_gr2(input)) return()
       group1 <- simulationResults()
-      group2 <- controlSimulationResults()
+      group2 <- group2_SimulationResults()
 
-  plot_CI_control(group1, group2, input, m$get("ttests_list"))
+  plot_CI_group2(group1, group2, input, m$get("ttests_list"))
     })
 
     output$choose_ttest <- renderUI({
@@ -539,7 +547,7 @@ output$tab4_legend_group <- renderText({
       group1 <- simulationResults()
       if (input$group2_ui) {
         if (check_input_gr2(input)) return()
-        group2 <- controlSimulationResults()
+        group2 <- group2_SimulationResults()
         if (is.null(group1) | is.null(group2)) return()
         plot_pvalue(group1, group2, input)
       } else {
@@ -564,7 +572,7 @@ output$tab4_legend_group <- renderText({
       group1 <- simulationResults()
       if (input$group2_ui) {
         if (check_input_gr2(input)) return()
-        group2 <- controlSimulationResults()
+        group2 <- group2_SimulationResults()
         if (is.null(group1) | is.null(group2)) return()
         build_ttable_st(group1, group2, input)
       } else {
@@ -584,7 +592,7 @@ output$tab4_legend_group <- renderText({
       group1 <- simulationResults()
 
       if (input$group2_ui) {
-        group2 <- controlSimulationResults()
+        group2 <- group2_SimulationResults()
         if (is.null(group1) | is.null(group2)) return()
         build_ttable_wlch(group1, group2, input)
       } else {
@@ -605,7 +613,7 @@ output$tab4_legend_group <- renderText({
       group1 <- simulationResults()
 
       if (input$group2_ui) {
-        group2 <- controlSimulationResults()
+        group2 <- group2_SimulationResults()
         if (is.null(group1) | is.null(group2)) return()
         build_ttable_wilc(group1, group2, input)
       } else {

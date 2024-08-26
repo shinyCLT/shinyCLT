@@ -15,6 +15,8 @@ globalVariables(c("ui", "server"))
 #' By default this will end the running function and stop the local shinyApp.
 #' Switching to "server" mode will keep the shiny application running in a
 #' background even if all with application is closed.
+#' @param user_plan Specifies the parallelization strategy to use.
+#'  Acceptable values are "cluster" (default), "multicore", or "multisession".
 #' @return Runs shinyApp
 #' @export
 #' @import shiny gamlss plotly future shinycssloaders waiter shinythemes
@@ -33,9 +35,9 @@ globalVariables(c("ui", "server"))
 #' \dontrun{
 #'   CLT()  # Launch the CLT demonstration app
 #' }
-CLT <- function(n.cores = NULL, mode = "app") {
+CLT <- function(n.cores = NULL, mode = "app", user_plan = "cluster") {
 
-  shiny::shinyOptions(n.cores = n.cores, mode = mode)
+  shiny::shinyOptions(n.cores = n.cores, mode = mode, user_plan = user_plan)
 
   source(system.file("app", "ui.R", package = "shinyCLT"),
                                         local = TRUE)

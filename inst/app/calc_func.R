@@ -60,13 +60,13 @@ calculate_statistics <- function(input, distribution) {
   }
 }
 
-calculate_statistics_control <- function(input, distribution) {
+calculate_statistics_group2 <- function(input, distribution) {
   if (check_input_gr2(input)) return()
 
   if (distribution[input$distr, "id"] == "UNIF") {
 
     y_r  <- lapply(1:input$R, function(x) {
-    generate_uniform_sample(n = input$control_n, mean = input$group2.mu,
+    generate_uniform_sample(n = input$group2_n, mean = input$group2.mu,
     sigma = input$group2.sigma)
     })
 
@@ -88,19 +88,19 @@ calculate_statistics_control <- function(input, distribution) {
       }
     }
 
-    ci_r <- t(apply(cbind(mean_r, sqrt(var_r / input$control_n)),
+    ci_r <- t(apply(cbind(mean_r, sqrt(var_r / input$group2_n)),
                           1, function(x, mu) {
-      x[1] + qt(0.975, input$control_n - 1) * x[2] * c(-1, 1)
+      x[1] + qt(0.975, input$group2_n - 1) * x[2] * c(-1, 1)
     }
     ))
     coverage_r <- apply(ci_r, 1, isin, theta = input$group2.mu)
 
-    control_data <- list(y_r = y_r, mean_r = mean_r, var_r = var_r,
+    group2_data <- list(y_r = y_r, mean_r = mean_r, var_r = var_r,
     ci_r = ci_r, coverage_r = coverage_r, all_y_r = all_y_r)
   } else {
   y_r <- lapply(as.list(rep(NA, input$R)), function(x, par) {
     do.call(paste0("r", distribution[input$distr, "id"]),
-            list(n = par$control_n, mu = par$group2.mu,
+            list(n = par$group2_n, mu = par$group2.mu,
             sigma = par$group2.sigma)[1:(2 +
             as.numeric(!is.na(distribution[input$distr, "sigma.value"])))]
     )
@@ -131,10 +131,10 @@ calculate_statistics_control <- function(input, distribution) {
 
   coverage_r <- apply(ci_r, 1, isin, theta = input$group2.mu)
 
-  control_data <- list(y_r = y_r, mean_r = mean_r, var_r = var_r, ci_r = ci_r,
+  group2_data <- list(y_r = y_r, mean_r = mean_r, var_r = var_r, ci_r = ci_r,
                       coverage_r = coverage_r, all_y_r = all_y_r)
 
-  return(control_data)
+  return(group2_data)
   }
 }
 
@@ -147,7 +147,7 @@ calculate_wilcoxon <- function(.group1, .group2, input, distribution) {
       } else {
 
       R <- input$R
-      plan(cluster)
+      plan(user_plan)
       result <-  future({
 
         if (is.null(n.cores)) {

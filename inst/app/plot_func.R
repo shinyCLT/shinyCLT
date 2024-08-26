@@ -935,7 +935,7 @@ if (is.null(data)) return()
 
 }
 
-plot_CI_control <- function(.group1, .group2, input, .ttests) {
+plot_CI_group2 <- function(.group1, .group2, input, .ttests) {
   if (is.null(input$ttest)) {
   return()
   } else {
@@ -1104,7 +1104,7 @@ build_table <- function(input, .group1) {
     sample1 <- .group1$all_y_r
 
       R <- input$R
-      plan(cluster)
+      plan(user_plan)
 
       result <- future({
 
@@ -1209,7 +1209,7 @@ plot_pvalue <- function(.group1, .group2, input) {
                           "sigma.value"])))])
 
   true.median <- median.group1 - median.group2
-      plan(cluster)
+      plan(user_plan)
 
   result <-  future({
     if (is.null(n.cores)) {

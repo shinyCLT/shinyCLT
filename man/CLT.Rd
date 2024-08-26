@@ -4,7 +4,7 @@
 \alias{CLT}
 \title{Launch the Central Limit Theorem Shiny application}
 \usage{
-CLT(n.cores = NULL, mode = "app")
+CLT(n.cores = NULL, mode = "app", user_plan = "cluster")
 }
 \arguments{
 \item{n.cores}{Number of cores to use for calculations. Default value
@@ -16,6 +16,9 @@ is NULL, which means that half of the cores will be used with the ceiling
 By default this will end the running function and stop the local shinyApp.
 Switching to "server" mode will keep the shiny application running in a
 background even if all with application is closed.}
+
+\item{user_plan}{Specifies the parallelization strategy to use.
+Acceptable values are "cluster" (default), "multicore", or "multisession".}
 }
 \value{
 Runs shinyApp

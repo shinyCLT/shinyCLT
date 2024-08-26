@@ -21,6 +21,16 @@ The `CLT` function comes with the following parameters:
   - `"app"` (default): The Shiny application stops running when the browser tab is closed.
   - `"server"`: The Shiny application continues running in the background, even after the browser tab is closed.
 
+- **`user_plan`**: Defines the parallelization strategy used for running the application. Acceptable values include:
+  - `"cluster"`: Distributes tasks across multiple machines or R sessions, suitable for larger, distributed systems.
+  - `"multicore"`: Utilises CPU cores on the current machine for parallel processing, best for systems that support forking.
+  - `"multisession"`: Runs tasks in separate R sessions, allowing parallel processing on systems where forking is not possible.
+
+  The performance of each plan varies depending on the operating system and computer specifications. Based on our experience:
+  - `"cluster"` is optimal for Windows machines.
+  - `"multicore"` is optimal for Linux machines.
+  - `"multisession"` is optimal for macOS (OSX) machines.
+
 ## Usage
 
 ### Example 1: Default Settings
