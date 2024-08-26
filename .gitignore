@@ -2,6 +2,13 @@
 .Rhistory
 .Rapp.history
 
+# osx and dlc
+.DS_Store
+.DS_Store?
+dlc/
+
+
+
 # Session Data files
 .RData
 .RDataTmp
