@@ -16,7 +16,7 @@ install.packages("shinyCLT")
 or GitHub
 
 ```r
-devtools::install_github("shinyCLT/shinyCLT")
+devtools::install_github("shinyCLT/shinyCLT", build_vignettes = TRUE)
 ```
 
 Then you could load the library and run the application.
@@ -25,3 +25,4 @@ Then you could load the library and run the application.
 library(shinyCLT)
 CLT()
 ```
+For more detailed information, see `vignette("shinyCLT")`.
