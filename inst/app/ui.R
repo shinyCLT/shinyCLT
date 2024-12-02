@@ -25,8 +25,7 @@ ui <- fluidPage(
       p(""),
       p("App developed by DLC and NAM / 20240125", style = "color:#FFFFF0;"),
       img(
-        src = paste0("https://www.cruk.cam.ac.uk/wp-content/themes/",
-                    "cambridge-theme/images/interface/main-logo-small.png"),
+        src = paste0("www/logo.jpg"),
         width = 100
       )
     ),

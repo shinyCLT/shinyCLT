@@ -162,7 +162,7 @@ markdown(paste0("**Upper plot:** Assumed probability mass ", distr_type,
   
 **Lower plot:** dot plots of the ", input$n,
 " observations for the 5 first simulated samples out of ", input$R,
-". The black crosses corresponds to the estimated mean per sample.
+". The black crosses correspond to the estimated mean per sample.
   
 **Table:** true mean and median values.
 "))
@@ -181,7 +181,7 @@ output$tab1_legend_group <- renderText({
   
 **Lower plots:** dot plots of the ", input$n  ,
 " observations for the 5 first simulated samples out of ", input$R,
-" per group. The black crosses corresponds to the estimated mean per sample.
+" per group. The triangles and squares correspond to the estimated mean per sample.
   
 **Table:** true mean and median values per group and true difference in
   means/medians.
