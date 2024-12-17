@@ -23,7 +23,7 @@ ui <- fluidPage(
       ),
       actionButton("go", "Simulate", style = "margin-top:13px;"),
       p(""),
-      p("App developed by DLC and NAM / 20240125", style = "color:#FFFFF0;")
+      p("App developed by DLC/NAM/TJ", style = "color:#FFFFF0;")
     ),
 
     mainPanel(align = "center",
