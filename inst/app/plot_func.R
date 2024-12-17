@@ -1188,9 +1188,9 @@ build_table <- function(input, .group1) {
 # p-value -----------------------------------------------------------------
 plot_pvalue <- function(.group1, .group2, input) {
   pvalues.st  <-   t(data.frame(mapply(t.test, .group1$all_y_r, .group2$all_y_r,
-              mu = input$mu - input$group2.mu, var.equal = TRUE)["p.value", ]))
+             var.equal = TRUE)["p.value", ]))
   pvalues.wlch  <- t(data.frame(mapply(t.test, .group1$all_y_r, .group2$all_y_r,
-  mu = input$mu - input$group2.mu, var.equal = FALSE)["p.value", ]))
+ var.equal = FALSE)["p.value", ]))
 
   sample1 <- .group1$all_y_r
   sample2 <- .group2$all_y_r
@@ -1334,7 +1334,7 @@ build_ttable_st <- function(.group1, .group2 = NULL, input) {
                         mu = input$mu, var.equal = TRUE)
   } else {
   t_test_st  <- mapply(t.test, .group1$all_y_r, .group2$all_y_r,
-                            mu = input$mu - input$group2.mu, var.equal = TRUE)
+                       var.equal = TRUE)
     }
   p_values <- t_test_st["p.value", ]
   conf_int <- t(data.frame(t_test_st["conf.int", ]))
@@ -1351,7 +1351,7 @@ build_ttable_st <- function(.group1, .group2 = NULL, input) {
 build_ttable_wlch <- function(.group1, .group2 = NULL, input) {
     if (is.null(.group2)) return()
   else t_test_wlch  <- mapply(t.test, .group1$all_y_r,
-  .group2$all_y_r, mu = input$mu - input$group2.mu, var.equal = FALSE)
+  .group2$all_y_r, var.equal = FALSE)
 
   p_values <- t_test_wlch["p.value", ]
   conf_int <- t(data.frame(t_test_wlch["conf.int", ]))
