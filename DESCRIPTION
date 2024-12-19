@@ -10,7 +10,7 @@ Authors@R: c(
             person("Thomas", "Jaki", role = "aut",
             comment = c(ORCID = "0000-0002-1096-188X"))            
             )
-Description: Shiny application estimating the operating characteristics of the Student's t-test, Welch test, and Wilcoxon test in one-sample or two-sample cases, in settings defined by the user (conditional distribution, sample size per group, location parameter per group, nuisance parameter per group), using Monte Carlo simulations.
+Description: Shiny application estimating the operating characteristics of the Student's t-test, Welch's t-test, and Wilcoxon test in one-sample or two-sample cases, in settings defined by the user (conditional distribution, sample size per group, location parameter per group, nuisance parameter per group), using Monte Carlo simulations.
 Imports: 
     shiny,
     gamlss,
