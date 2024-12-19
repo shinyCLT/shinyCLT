@@ -1,14 +1,16 @@
 Package: shinyCLT
 Title: Central Limit Theorem Shiny Application
-Version: 0.9.1
+Version: 0.9.2
 Authors@R: c(
             person("Dominique-Laurent", "Couturier", role = c("aut", "cre"),
-            email = "dlc45@cam.ac.uk", 
+            email = "dominique.couturier@mrc-bsu.cam.ac.uk", 
             comment = c(ORCID = "0000-0001-5774-5036")), 
             person("Nikita", "Mozgunov", role = "aut",
-            comment = c(ORCID = "0000-0003-0941-718X"))
+            comment = c(ORCID = "0000-0003-0941-718X")),
+            person("Thomas", "Jaki", role = "aut",
+            comment = c(ORCID = "0000-0002-1096-188X"))            
             )
-Description: Shiny application with Central Limit Theorem examples.
+Description: Shiny application estimating the operating characteristics of the Student's t-test, Welch test, and Wilcoxon test in one-sample or two-sample cases, in settings defined by the user (conditional distribution, sample size per group, location parameter per group, nuisance parameter per group), using Monte Carlo simulations.
 Imports: 
     shiny,
     gamlss,
