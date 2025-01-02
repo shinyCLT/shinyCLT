@@ -459,6 +459,10 @@ output$tab4_legend_group <- renderText({
 
     output$mean <- renderPlot({
       if (v$simul == FALSE) return()
+      
+        oldpar <- par(no.readonly = TRUE)
+        on.exit(par(oldpar))
+
 
       if (check_input_gr1(input)) return()
       group1 <- simulationResults()
@@ -476,6 +480,9 @@ output$tab4_legend_group <- renderText({
 
     output$diffmean <- renderPlot({
       if (v$simul == FALSE) return()
+      oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
+
       if (input$group2_ui) {
 
         if (check_input_gr1(input)) return()
@@ -543,6 +550,9 @@ output$tab4_legend_group <- renderText({
     output$pvalue <- renderPlot({
       if (v$simul == FALSE) return()
       if (check_input_gr1(input)) return()
+      
+      oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
 
       group1 <- simulationResults()
       if (input$group2_ui) {

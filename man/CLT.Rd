@@ -31,7 +31,7 @@ The app is stored internally within the package and showcases various
 Check more details at vignette("shinyCLT")
 }
 \examples{
-\dontrun{
+if(interactive()){
   CLT()  # Launch the CLT demonstration app
 }
 }

@@ -32,10 +32,11 @@ globalVariables(c("ui", "server"))
 #' @importFrom dplyr mutate rename slice
 #' @importFrom utils globalVariables
 #' @examples
-#' \dontrun{
+#' if(interactive()){
 #'   CLT()  # Launch the CLT demonstration app
 #' }
 CLT <- function(n.cores = NULL, mode = "app", user_plan = "cluster") {
+
 
   shiny::shinyOptions(n.cores = n.cores, mode = mode, user_plan = user_plan)
 
