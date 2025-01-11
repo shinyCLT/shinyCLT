@@ -240,55 +240,113 @@ Application</h1>
 
 
 
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>The CLT function in the shinyCLT package launches an interactive
-Shiny application that demonstrates the Central Limit Theorem (CLT).
-This application provides an educational tool through interactive
-visualizations of statistical principles.</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>The <code>CLT()</code> function in the <code>shinyCLT</code> package
+launches an interactive Shiny application that demonstrates the Central
+Limit Theorem (CLT). This application provides an educational tool
+through interactive visualisations of statistical principles.</p>
+</div>
 <div id="function-parameters" class="section level2">
 <h2>Function Parameters</h2>
-<p>The CLT function comes with the following parameters:</p>
-<p><strong>n.cores</strong>: Specifies the number of CPU cores to be
-used for calculations. By default (n.cores = NULL), the function uses
-half of the available cores on your machine, rounded up to the nearest
-whole number.</p>
-<p><strong>mode</strong>: Controls the behavior of the application when
-the web browser tab or IDE preview is closed:</p>
-<p>“app” (default): The Shiny application stops running when the browser
-tab is closed. “server”: The Shiny application continues running in the
-background, even after the browser tab is closed. Usage Example 1:
-Default Settings In the default mode, the application uses half of the
-available cores and stops running when the browser tab is closed:</p>
-<pre><code># Launch the Central Limit Theorem Shiny application
+<p>The <code>CLT</code> function comes with the following
+parameters:</p>
+<ul>
+<li><p><strong><code>n.cores</code></strong>: Specifies the number of
+CPU cores allocated for the app’s calculations. By default
+(<code>n.cores = NULL</code>), the function will automatically use half
+of the available cores on your machine, rounded up to the nearest whole
+number.</p></li>
+<li><p><strong><code>mode</code></strong>: Controls the behavior of the
+application when the web browser tab or IDE preview is closed:</p>
+<ul>
+<li><code>&quot;app&quot;</code> (default): The Shiny application stops running
+when the browser tab is closed.</li>
+<li><code>&quot;server&quot;</code>: The Shiny application continues running in
+the background, even after the browser tab is closed.</li>
+</ul></li>
+<li><p><strong><code>user_plan</code></strong>: Defines the
+parallelization strategy used for running the application. Acceptable
+values include:</p>
+<ul>
+<li><code>&quot;cluster&quot;</code>: Distributes tasks across multiple machines
+or R sessions, suitable for larger, distributed systems.</li>
+<li><code>&quot;multicore&quot;</code>: Utilises CPU cores on the current machine
+for parallel processing, best for systems that support forking.</li>
+<li><code>&quot;multisession&quot;</code>: Runs tasks in separate R sessions,
+allowing parallel processing on systems where forking is not
+possible.</li>
+</ul>
+<p>The performance of each plan varies depending on the operating system
+and computer specifications. Based on our experience:</p>
+<ul>
+<li><code>&quot;cluster&quot;</code> is optimal for Windows machines.</li>
+<li><code>&quot;multicore&quot;</code> is optimal for Linux machines.</li>
+<li><code>&quot;multisession&quot;</code> is optimal for macOS (OSX)
+machines.</li>
+</ul></li>
+</ul>
+</div>
+<div id="usage" class="section level2">
+<h2>Usage</h2>
+<div id="example-1-default-settings" class="section level3">
+<h3>Example 1: Default Settings</h3>
+<p>In the default mode, the application uses half of the available cores
+and stops running when the browser tab is closed:</p>
+<pre><code>library(shinyCLT)
+# Launch the Central Limit Theorem Shiny application
 CLT()</code></pre>
 </div>
+<div id="example-2-custom-number-of-cores-and-server-mode" class="section level3">
+<h3>Example 2: Custom Number of Cores and Server Mode</h3>
+<p>You can specify the number of cores to use and keep the application
+running in the background by setting <code>mode = &quot;server&quot;</code>:</p>
+<pre><code># Launch the app using 4 cores and keep it running in the background
+CLT(n.cores = 4, mode = &quot;server&quot;)</code></pre>
 </div>
-<div id="considerations" class="section level1">
-<h1>Considerations</h1>
-<div id="long-computations" class="section level2">
-<h2>Long Computations</h2>
+</div>
+<div id="considerations" class="section level2">
+<h2>Considerations</h2>
+<div id="long-computations" class="section level3">
+<h3>Long Computations</h3>
 <p>The application may involve long-running computations, particularly
-with large datasets or complex simulations. Utilizing multiple cores can
-expedite these operations, but it may also lead to high CPU usage,
-potentially affecting the performance of other applications.</p>
+with large datasets or high number of simulated samples. Utilising
+multiple cores can expedite these operations, but it may also lead to
+high CPU usage, potentially affecting the performance of other
+applications.</p>
 </div>
-<div id="resource-management" class="section level2">
-<h2>Resource Management</h2>
-<p>When specifying n.cores, be cautious of system resource usage.
-Allocating too many cores to the Shiny application could slow down other
-processes on your machine.</p>
+<div id="resource-management" class="section level3">
+<h3>Resource Management</h3>
+<p>When specifying <code>&quot;n.cores&quot;</code>, be careful about system
+resource usage. Allocating too many cores to the Shiny application could
+slow down other processes on your machine.</p>
 </div>
-<div id="persistent-sessions" class="section level2">
-<h2>Persistent Sessions</h2>
-<p>In “server” mode, the Shiny application will continue to run even
-after closing the browser. While this can be advantageous for
+<div id="persistent-sessions" class="section level3">
+<h3>Persistent Sessions</h3>
+<p>In <code>&quot;server&quot;</code> mode, the Shiny application will continue to
+run even after the browser is closed. While this can be beneficial for
 long-running sessions, it requires manual intervention to stop the
-application, which could lead to unintended resource consumption if
+application, which can lead to unintended resource consumption if
 forgotten.</p>
-<p>Conclusion By understanding and using the parameters effectively, you
-can optimize the performance and behavior of the Central Limit Theorem
-Shiny application according to your needs.</p>
+</div>
+<div id="reactivity-and-performance" class="section level3">
+<h3>Reactivity and Performance</h3>
+<p>This Shiny application is fully reactive, meaning that every time you
+interact with the UI - such as moving a slider, switching tabs, or
+changing the type of distribution - the underlying distribution
+simulations are recalculated. These calculations are performed
+sequentially, so each action you take triggers a new calculation that
+must be completed before the next one can start.</p>
+<p>This reactivity ensures that the visualisations are always up to
+date, but it also means that you may experience delays, particularly if
+the calculations are complex or if you’re running the application on a
+limited number of CPU cores. In some situations, depending on the size
+of the dataset and the complexity of the simulation, these delays can
+become significant, requiring you to wait until all computations have
+finished before you can continue interacting with the UI.</p>
+<p>This behaviour highlights the importance of optimising the
+application settings according to the capabilities of your system and
+the specific tasks you wish to perform.</p>
 </div>
 </div>
 
