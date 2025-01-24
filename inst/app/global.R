@@ -13,7 +13,7 @@ m <- cache_mem()
 
 n.cores <- getShinyOption("n.cores")
 mode <- getShinyOption("mode")
-user_plan <- getShinyOption("user_plan")
+user_plan <- getShinyOption("user_plan", default = "cluster")
 
 distribution = data.frame(pos = 1:9,
     id          = c("NO","GA","BE","BI","WEI3","ZIP2","PO","EXP", "UNIF"),

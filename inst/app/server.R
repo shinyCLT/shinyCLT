@@ -181,7 +181,8 @@ output$tab1_legend_group <- renderText({
   
 **Lower plots:** dot plots of the ", input$n  ,
 " observations for the 5 first simulated samples out of ", input$R,
-" per group. The triangles and squares correspond to the estimated mean per sample.
+" per group. The triangles and squares correspond to the estimated mean per 
+sample.
   
 **Table:** true mean and median values per group and true difference in
   means/medians.
@@ -459,10 +460,6 @@ output$tab4_legend_group <- renderText({
 
     output$mean <- renderPlot({
       if (v$simul == FALSE) return()
-      
-        oldpar <- par(no.readonly = TRUE)
-        on.exit(par(oldpar))
-
 
       if (check_input_gr1(input)) return()
       group1 <- simulationResults()
@@ -480,8 +477,6 @@ output$tab4_legend_group <- renderText({
 
     output$diffmean <- renderPlot({
       if (v$simul == FALSE) return()
-      oldpar <- par(no.readonly = TRUE)
-      on.exit(par(oldpar))
 
       if (input$group2_ui) {
 
@@ -550,9 +545,6 @@ output$tab4_legend_group <- renderText({
     output$pvalue <- renderPlot({
       if (v$simul == FALSE) return()
       if (check_input_gr1(input)) return()
-      
-      oldpar <- par(no.readonly = TRUE)
-      on.exit(par(oldpar))
 
       group1 <- simulationResults()
       if (input$group2_ui) {

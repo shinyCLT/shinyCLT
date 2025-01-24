@@ -1,6 +1,6 @@
 Package: shinyCLT
-Title: Central Limit Theorem 'Shiny' Application
-Version: 0.9.2
+Title: Central Limit Theorem 'shiny' Application
+Version: 0.9.3
 Authors@R: c(
             person("Dominique-Laurent", "Couturier", role = c("aut", "cre"),
             email = "dominique.couturier@mrc-bsu.cam.ac.uk", 
@@ -10,14 +10,15 @@ Authors@R: c(
             person("Thomas", "Jaki", role = "aut",
             comment = c(ORCID = "0000-0002-1096-188X"))            
             )
-Description: 'Shiny' application estimating the operating characteristics of the Student's t-test by Student (1908) <doi:10.1093/biomet/6.1.1>, Welch's t-test by Welch (1947) <doi:10.1093/biomet/34.1-2.28>, and Wilcoxon test by Wilcoxon (1945) <doi:10.2307/3001968> in one-sample or two-sample cases, in settings defined by the user (conditional distribution, sample size per group, location parameter per group, nuisance parameter per group), using Monte Carlo simulations Malvin H. Kalos, Paula A. Whitlock (2008) <doi:10.1002/9783527626212>.
+Description: 'shiny' application estimating the operating characteristics of the Student's t-test by Student (1908) <doi:10.1093/biomet/6.1.1>, Welch's t-test by Welch (1947) <doi:10.1093/biomet/34.1-2.28>, and Wilcoxon test by Wilcoxon (1945) <doi:10.2307/3001968> in one-sample or two-sample cases, in settings defined by the user (conditional distribution, sample size per group, location parameter per group, nuisance parameter per group), using Monte Carlo simulations Malvin H. Kalos, Paula A. Whitlock (2008) <doi:10.1002/9783527626212>.
 Imports: 
+    testthat,
+    purrr,
     shiny,
     gamlss,
     dplyr, 
     plotly,
     future,
-    purrr,
     shinycssloaders,
     waiter,
     shinythemes,

@@ -178,7 +178,7 @@ calculate_wilcoxon <- function(.group1, .group2, input, distribution) {
         colnames(wilcox_ci_both) <- c("ci_low", "ci_high")
 
         wilcox_r <- list(wilcox_ci_both, wilcox_pvalue)
-# Diff in means removed from mu param, cause it make no sense
+
         student_ci_both <- t(data.frame(mapply(t.test,
         .group1$all_y_r, .group2$all_y_r, var.equal = TRUE)["conf.int", ]))
         student_pvalue  <- t(data.frame(mapply(t.test,

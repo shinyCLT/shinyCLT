@@ -675,6 +675,10 @@ group2_5samples_plot <- function(input, distribution, .group1, .group2) {
 
 # Plot hist ---------------------------------------------------------------
 plot_density_qq <- function(data, input) {
+
+oldpar <- par(no.readonly = TRUE)
+on.exit(par(oldpar))
+
   hist_muhat <- hist(data$mean_r, plot = FALSE, nclass = ceiling(sqrt(input$R)))
   mean_muhat <- mean(data$mean_r)
   sdev_muhat <- sqrt(var(data$mean_r))
@@ -720,6 +724,9 @@ plot_density_qq <- function(data, input) {
 
 # -------------------------------------------------------------------------
 plot_compare_density_qq <- function(.group1, .group2, input) {
+
+oldpar <- par(no.readonly = TRUE)
+on.exit(par(oldpar))
 
   par(xpd = TRUE)
 
@@ -812,6 +819,9 @@ plot_compare_density_qq <- function(.group1, .group2, input) {
 }
 
 plot_compare_means_qq <- function(.group1, .group2, input) {
+
+oldpar <- par(no.readonly = TRUE)
+on.exit(par(oldpar))
 
   group1_mean_muhat <- mean(.group1$mean_r)
   group1_sdev_muhat <- sqrt(var(.group1$mean_r))
@@ -931,7 +941,7 @@ if (is.null(data)) return()
                         tickvals = c(1,seq(10,100,10)),
                         zeroline = FALSE,
                         autorange = "reversed"),
-           showlegend = TRUE)
+            showlegend = TRUE)
 
 }
 
@@ -1188,9 +1198,9 @@ build_table <- function(input, .group1) {
 # p-value -----------------------------------------------------------------
 plot_pvalue <- function(.group1, .group2, input) {
   pvalues.st  <-   t(data.frame(mapply(t.test, .group1$all_y_r, .group2$all_y_r,
-             var.equal = TRUE)["p.value", ]))
+              var.equal = TRUE)["p.value", ]))
   pvalues.wlch  <- t(data.frame(mapply(t.test, .group1$all_y_r, .group2$all_y_r,
- var.equal = FALSE)["p.value", ]))
+  var.equal = FALSE)["p.value", ]))
 
   sample1 <- .group1$all_y_r
   sample2 <- .group2$all_y_r
@@ -1218,7 +1228,7 @@ plot_pvalue <- function(.group1, .group2, input) {
         } else {
         no_cores  <- n.cores
         }
-    
+
     cl <- makeCluster(no_cores)
 
     clusterExport(cl, c("sample1", "sample2", "wilcox.test", "R"),
@@ -1237,6 +1247,9 @@ plot_pvalue <- function(.group1, .group2, input) {
   plan(sequential)
 
   wilcox.pvalue <- sapply(res, `[[`, "p.value")
+
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
 
   par(mfrow = c(1, 3), mar = c(1, 3, 2, 2))
   par(oma = c(3,2,3,3))

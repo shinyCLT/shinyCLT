@@ -22,7 +22,8 @@ globalVariables(c("ui", "server"))
 #' @import shiny gamlss plotly future shinycssloaders waiter shinythemes
 #' @import cachem
 #' @importFrom shiny shinyApp
-#' @import shinyWidgets purrr
+#' @import shinyWidgets
+#' @importFrom purrr map2
 #' @importFrom grDevices rainbow
 #' @importFrom graphics abline axis curve hist legend lines par points segments
 #' @importFrom stats dnorm dunif qqline qqnorm qt qunif runif sd t.test var

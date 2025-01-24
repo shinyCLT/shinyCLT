@@ -1,0 +1,13 @@
+linters: linters_with_defaults(
+  line_length_linter(80),
+  cyclocomp_linter = NULL,
+  object_name_linter = NULL,
+  object_usage_linter = NULL,
+  commented_code_linter = NULL,
+  assignment_linter = NULL,
+  seq_linter = NULL,
+  semicolon_linter = NULL,
+  indentation_linter = NULL,
+  vector_logic_linter = NULL,
+  object_length_linter = NULL,
+  commas_linter = NULL)
