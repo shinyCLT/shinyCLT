@@ -1,3 +1,4 @@
 library(testthat)
+library(shinyCLT)
 
-test_dir("tests/testthat")
+test_check("shinyCLT")

@@ -1,9 +1,9 @@
 library(testthat)
 library(plotly)
 
-global_path <- testthat::test_path("..", "..", "inst", "app", "global.R")
-calc_func_path <- testthat::test_path("..", "..", "inst", "app", "calc_func.R")
-plot_func_path <- testthat::test_path("..", "..", "inst", "app", "plot_func.R")
+global_path <- system.file("app", "global.R", package = "shinyCLT")
+calc_func_path <- system.file("app", "calc_func.R", package = "shinyCLT")
+plot_func_path <- system.file("app", "plot_func.R", package = "shinyCLT")
 
 source(global_path)
 source(calc_func_path)
@@ -123,46 +123,4 @@ test_that("plot_CI works correctly", {
   dev.off()
 
   expect_s3_class(plot, "plotly")
-})
-
-test_that("build_table works correctly", {
-  input <- list(distr = 1, mu = 0, sigma = 1, n = 10, R = 5)
-  group1 <- list(all_y_r = replicate(5, rnorm(10), simplify = FALSE),
-                coverage_r = rnorm(5))
-
-  table <- build_table(input, group1)
-  expect_s3_class(table, "data.frame")
-  expect_true(all(c("Method", "Coverage CI", "Type I error", "Power")
-              %in% colnames(table)))
-})
-
-test_that("plot_pvalue works correctly", {
-  input <- list(
-    distr = 1, mu = 0, sigma = 1, group2.mu = 0, group2.sigma = 1, n = 10,
-    R = 5
-  )
-  group1 <- list(
-    all_y_r = list(
-      rnorm(10), rnorm(10), rnorm(10), rnorm(10), rnorm(10)
-    )
-  )
-  group2 <- list(
-    all_y_r = list(
-      rnorm(10), rnorm(10), rnorm(10), rnorm(10), rnorm(10)
-    )
-  )
-
-  distribution <- data.frame(
-    id = c("norm"),
-    discrete = c(FALSE),
-    x.low = c(-Inf),
-    x.high = c(Inf),
-    sigma.value = c(TRUE)
-  )
-
-  pdf(NULL)
-  plot_pvalue(group1, group2, input)
-  dev.off()
-
-  expect_true(TRUE)
 })

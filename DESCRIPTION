@@ -10,7 +10,7 @@ Authors@R: c(
             person("Thomas", "Jaki", role = "aut",
             comment = c(ORCID = "0000-0002-1096-188X"))            
             )
-Description: 'shiny' application estimating the operating characteristics of the Student's t-test by Student (1908) <doi:10.1093/biomet/6.1.1>, Welch's t-test by Welch (1947) <doi:10.1093/biomet/34.1-2.28>, and Wilcoxon test by Wilcoxon (1945) <doi:10.2307/3001968> in one-sample or two-sample cases, in settings defined by the user (conditional distribution, sample size per group, location parameter per group, nuisance parameter per group), using Monte Carlo simulations Malvin H. Kalos, Paula A. Whitlock (2008) <doi:10.1002/9783527626212>.
+Description: A 'shiny' application estimating the operating characteristics of the Student's t-test by Student (1908) <doi:10.1093/biomet/6.1.1>, Welch's t-test by Welch (1947) <doi:10.1093/biomet/34.1-2.28>, and Wilcoxon test by Wilcoxon (1945) <doi:10.2307/3001968> in one-sample or two-sample cases, in settings defined by the user (conditional distribution, sample size per group, location parameter per group, nuisance parameter per group), using Monte Carlo simulations Malvin H. Kalos, Paula A. Whitlock (2008) <doi:10.1002/9783527626212>.
 Imports: 
     testthat,
     purrr,
@@ -30,4 +30,4 @@ License: GPL-2
 Encoding: UTF-8
 RoxygenNote: 7.3.2.9000
 VignetteBuilder: knitr
-
+Config/testthat/edition: 3

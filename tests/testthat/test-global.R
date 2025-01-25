@@ -1,6 +1,6 @@
 library(testthat)
 
-global_path <- testthat::test_path("..", "..", "inst", "app", "global.R")
+global_path <- system.file("app", "global.R", package = "shinyCLT")
 source(global_path)
 
 test_that("check_input_gr1 works correctly", {
