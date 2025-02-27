@@ -748,7 +748,7 @@ on.exit(par(oldpar))
   x1 <- seq(xlim1[1], xlim1[2], length = 1000)
   d.x1 <- dnorm(x1, group1_mean_muhat, group1_sdev_muhat)
   d.x2 <- dnorm(x1, group2_mean_muhat, group2_sdev_muhat)
-  ylim1 <- c(0, max(c(unlist(d.x1, d.x2), group1_hist_muhat$density,
+  ylim1 <- c(0, max(c(unlist(list(d.x1, d.x2)), group1_hist_muhat$density,
               group2_hist_muhat$density)) * 1.2)
 
   # ## Plots
