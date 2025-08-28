@@ -1192,7 +1192,7 @@ build_table <- function(input, .group1) {
 
   colnames(result.table) <- c("Method", "Coverage CI", "Type I error", "Power")
 
-  result.table
+  result.table[-length(result.table)]
 }
 
 # p-value -----------------------------------------------------------------
