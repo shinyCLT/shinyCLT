@@ -337,15 +337,20 @@ output$tab4_legend_group <- renderText({
       v$simul <- FALSE
     })
 
+    observeEvent(list(input$distr, input$mu, input$sigma, input$n, input$R,
+                      input$group2.mu, input$group2.sigma, input$group2_n), {
+      v$simul <- FALSE
+    }, ignoreInit = TRUE)
+
     observeEvent(input$go, {
       v$simul <- input$go
     })
 
-    simulationResults <- reactive({
+    simulationResults <- eventReactive(input$go, {
       group1 <- calculate_statistics(input, distribution)
     })
 
-    group2_SimulationResults <- reactive({
+    group2_SimulationResults <- eventReactive(input$go, {
       if (input$group2_ui) {
         req(input$group2.mu)
         group2 <- calculate_statistics_group2(input, distribution)

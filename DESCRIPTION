@@ -1,6 +1,6 @@
 Package: shinyCLT
 Title: Central Limit Theorem 'shiny' Application
-Version: 0.9.4
+Version: 0.9.4.0001
 Authors@R: c(
             person("Dominique-Laurent", "Couturier", role = c("aut", "cre"),
             email = "dominique.couturier@mrc-bsu.cam.ac.uk", 

@@ -158,16 +158,28 @@ calculate_wilcoxon <- function(.group1, .group2, input, distribution) {
         }
         cl <- makeCluster(no_cores)
 
-        clusterExport(cl, c("sample1", "sample2", "wilcox.test", "R"),
-        envir = environment())
+        # Ensure cluster cleanup even on error
+        tryCatch({
+          clusterExport(cl, c("sample1", "sample2", "wilcox.test", "R"),
+          envir = environment())
 
-        wilcox_results <- parLapply(cl, 1:R, function(i) {
-          wilcox.test(sample1[[i]], sample2[[i]], conf.int = TRUE,
-                                                  exact = FALSE)
+          wilcox_results <- parLapply(cl, 1:R, function(i) {
+            # Handle cases where wilcox.test fails (e.g., all values identical)
+            tryCatch(
+              wilcox.test(sample1[[i]], sample2[[i]], conf.int = TRUE,
+                                                      exact = FALSE),
+              error = function(e) {
+                # Return NA structure when test cannot be computed
+                list(p.value = NA_real_,
+                     conf.int = c(NA_real_, NA_real_))
+              }
+            )
+          })
+
+          wilcox_results
+        }, finally = {
+          stopCluster(cl)
         })
-
-        stopCluster(cl)
-        wilcox_results
       })
 
         res <- value(result)
@@ -183,12 +195,12 @@ calculate_wilcoxon <- function(.group1, .group2, input, distribution) {
         .group1$all_y_r, .group2$all_y_r, var.equal = TRUE)["conf.int", ]))
         student_pvalue  <- t(data.frame(mapply(t.test,
         .group1$all_y_r, .group2$all_y_r, var.equal = TRUE)["p.value", ]))
-
+          
         welch_ci_both <- t(data.frame(mapply(t.test,
         .group1$all_y_r, .group2$all_y_r, var.equal = FALSE)["conf.int", ]))
         welch_pvalue  <- t(data.frame(mapply(t.test,
         .group1$all_y_r, .group2$all_y_r, var.equal = FALSE)["p.value", ]))
-
+        
         my_list <- list(
           student = list(student_ci_both, pvalue = student_pvalue),
           welch   = list(welch_ci_both, pvalue = welch_pvalue),
