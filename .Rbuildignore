@@ -1,10 +1,13 @@
 ^CLTApp\.Rproj$
 ^\.Rproj\.user$
-.github
 ^cran-comments\.md$
+.github
 .vscode
+.quarto
 ^doc$
 ^Meta$
 ^revdep$
 shinyCLT.Rproj
 .lintr
+README.md
+images

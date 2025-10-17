@@ -56,3 +56,6 @@ po/*~
 rsconnect/
 /doc/
 /Meta/
+
+/.quarto/
+**/*.quarto_ipynb
