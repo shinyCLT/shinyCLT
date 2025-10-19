@@ -30,7 +30,6 @@ A window will open in your web browser with the interactive application.
 ---
 
 ## How to Use the Application
-
 ### Basic Interface Overview
 
 ![Application Interface](images/interface_overview.png)
@@ -69,10 +68,10 @@ In the **sidebar**, select a **distribution** from the dropdown menu:
 
 Depending on your distribution, you'll see sliders to adjust:
 
-- **Theoretical mean (μ)** The average value in the population
-- **Theoretical standard deviation (σ)** How spread out the values are (not available for all distributions)
-- **Sample size (n)** How many observations in each sample (e.g., 10, 50, 100)
-- **Number of simulations (R)** How many samples to generate (e.g., 1000, 5000, 10000)
+- **Theoretical mean (μ)**
+- **Theoretical standard deviation (σ)** (not available for all distributions)
+- **Sample size (n)**
+- **Number of simulations (R)**
 
 ### Run the Simulation
 
@@ -86,7 +85,7 @@ Click the **"Simulate"** button!
 
  The app has **4 tabs** with different visualisations.
 
-Each tab has helpful explanatory text at the bottom; scroll down to read detailed information about plots and tables.
+Each tab has helpful explanatory **text at the bottom**; scroll down to read detailed information about plots and tables.
 
 #### Tab 1: Theoretical density
 
@@ -113,14 +112,14 @@ Each tab has helpful explanatory text at the bottom; scroll down to read detaile
 ###### *Loading of this tab could take some time*
 
 **Table**
-- Shows the **estimated coverage** of confidence intervals, **Type I error rate**, and **statistical power**
+Shows the **estimated coverage** of confidence intervals, **Type I error rate**, and **statistical power**
   - **Coverage** Percentage of CIs that contain the true mean
   - **Type I error** Percentage of false positives when testing if the mean differs from the true value
   - **Power** Ability to detect a real difference when one exists
   
 **Plot** *(interactive - hover to explore)*
-- Blue dashed line is the true mean (μ)
-- Horizontal lines representing confidence intervals for the first 100 samples:
+Blue dashed line is the true mean (μ)
+Horizontal lines representing confidence intervals for the first 100 samples:
   - **Grey** interval contains the true mean
   - **Red** interval misses the true mean
 
@@ -128,8 +127,8 @@ Each tab has helpful explanatory text at the bottom; scroll down to read detaile
 
 ![Tab 4](images/tab4_pvalues.png)
 
- **Histogram** of p-values from statistical tests
- **Tables** showing results for the first 5 samples
+ **Top Histograms** of p-values from statistical tests
+ **Bottom Tables** showing results for the first 5 samples
 
 ---
 
@@ -192,9 +191,9 @@ Click **"Simulate"** to run the two-group simulation.
 
 **Table**
 Summarises **confidence interval coverage**, **Type I error rate**, and statistical **power** for different tests
-  - **Coverage**  Percentage of CIs that contain the true difference in means (should be ~95%)
-  - **Type I error** Rate of false positives when groups are actually identical (should be ~5%)
-  - **Power** Ability to detect a real difference between groups (higher is better, especially when means differ)
+  - **Coverage**  Percentage of CIs that contain the true difference in means
+  - **Type I error** Rate of false positives when groups are actually identical
+  - **Power** Ability to detect a real difference between groups
 
 **Test selection dropdown** you can choose between:
   - **Student's t-test** (assumes equal variances)
@@ -216,7 +215,6 @@ Results for the first 5 samples for all three tests:
   - **Student's t-test**
   - **Welch t-test**
   - **Wilcoxon test**
-
 ---
 ## Other Notes
 
